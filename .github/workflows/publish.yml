@@ -36,7 +36,7 @@ jobs:
       with:
         author_name: github-actions
         author_email: 41898282+github-actions[bot]@users.noreply.github.com
-        message: 'Regenerate notebooks: $(git rev-parse --short "${GITHUB_SHA}")'
+        message: 'Regenerate notebooks by GitHub Actions'
         add: 'notebook'
 
     # Build the book
