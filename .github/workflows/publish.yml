@@ -29,6 +29,21 @@ jobs:
       run: |
         pip install -r ./notebook/requirements.txt
 
+    - name: Regenerate notebooks
+      run: |
+        rm -rf notebook/contents notebook/_toc.yml
+        cd util/tex2notebook
+        python tex2notebook.py
+        cd -
+
+    - name: Commit the latest notebooks
+      uses: EndBug/add-and-commit@v7
+      with:
+        author_name: github-actions
+        author_email: 41898282+github-actions[bot]@users.noreply.github.com
+        message: 'Regenerate notebooks: ${{ GITHUB_SHA }}'
+        add: 'notebook'
+
     # Build the book
     - name: Build the book
       run: |
